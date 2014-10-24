@@ -1,13 +1,8 @@
 ---
 # properties
 
-osx:
-  taps:
-    - "caskroom/cask"
-    - "caskroom/versions"
-
+brew:
   packages:
-    - package: "brew-cask"
     - package: "autoconf"
     - package: "automake"
     - package: "awscli"
@@ -28,14 +23,3 @@ osx:
     - package: "vim"
       options: "override-system-vi"
     - package: "zsh"
-
-  casks:
-    - "intellij-idea"
-    - "iterm2-beta"
-    - "java7"
-    - "transmission"
-    - "vagrant"
-    - "vlc"
-    - "vmware-fusion"
-
-
