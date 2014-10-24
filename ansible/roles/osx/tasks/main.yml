@@ -3,7 +3,7 @@
 
 - name: "OS X Preferences"
   command: defaults write {{item.domain}} {{item.key}} {{item.value}}
-  with_items: osx.prefs.global
+  with_items: osx.prefs
 
 - name: "Killing affected apps"
   command: killall {{item}}
