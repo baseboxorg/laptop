@@ -45,17 +45,21 @@ ansible_deps() {
   virtualenv $PROVISION_DIR
 
   /tmp/provision/bin/pip -q install ansible
+}
 
-  rm -rf $PROVISION_DIR
+ansible() {
+  echo "hai"
 }
 
 clone_repo() {
-  git clone https://github.com/sthulb/laptop.git $PROVISION_DIR/repo
+  git clone -q https://github.com/sthulb/laptop.git $PROVISION_DIR/repo
 }
 
 main() {
   xcode_cli_tools
+  clone_repo
   ansible_deps
+  ansible
 }
 
 if [ $# -eq 0 ]; then
