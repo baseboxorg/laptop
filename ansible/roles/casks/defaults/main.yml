@@ -1,0 +1,16 @@
+---
+# properties
+
+casks:
+  taps:
+    - "caskroom/cask"
+    - "caskroom/versions"
+
+  packages:
+    - "intellij-idea"
+    - "iterm2-beta"
+    - "java7"
+    - "transmission"
+    - "vagrant"
+    - "vlc"
+    - "vmware-fusion"
