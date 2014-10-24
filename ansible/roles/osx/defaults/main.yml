@@ -18,6 +18,7 @@ osx:
       domain: NSGlobalDomain
     - key: AppleKeyboardUIMode
       value: -int 3
+      domain: NSGlobalDomain
 
     # Trackpad
     - key: Clicking
