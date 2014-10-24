@@ -49,7 +49,7 @@ ansible_deps() {
 
 ansible() {
   info "Running Ansible"
-  $PROVISION_DIR/bin/ansible-playbook $PROVISION_DIR/ansible/playbook.yml -i $PROVISION_DIR/ansible/hosts --ask-sudo-pass
+  $PROVISION_DIR/bin/ansible-playbook $PROVISION_DIR/repo/ansible/playbook.yml -i $PROVISION_DIR/repo/ansible/hosts --ask-sudo-pass
 }
 
 clone_repo() {
