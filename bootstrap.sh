@@ -48,7 +48,8 @@ ansible_deps() {
 }
 
 ansible() {
-  echo "hai"
+  info "Running Ansible"
+  ansible-playbook $PROVISION_DIR/ansible/playbook.yml -i $PROVISION_DIR/ansible/hosts --ask-sudo-pass
 }
 
 clone_repo() {
