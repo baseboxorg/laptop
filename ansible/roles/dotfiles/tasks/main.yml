@@ -2,17 +2,25 @@
 # dotfiles playbook
 
 - name: "Clone dotfiles"
-  git: repo=https://github.com/sthulb/dotfiles.git dest=/Users/{{ansible_user_id}} recursive=yes
+  git: repo=https://github.com/sthulb/dotfiles.git dest=/Users/{{ansible_user_id}}/.dotfiles recursive=yes
 
 - name: "Link files"
   file: src=/Users/{{ansible_user_id}}/.dotfiles/{{ item.path }} dest=/Users/{{ansible_user_id}}/{{ item.dest }} state=link
   with_items:
-    - { path: "tmux.conf", dest: "/Users/{{ansible_user_id}}/.tmux.conf" }
-    - { path: "git/gitconfig", dest: "/Users/{{ansible_user_id}}/.gitconfig" }
-    - { path: "ruby/gemrc", dest: "/Users/{{ansible_user_id}}/.gemrc" }
-    - { path: "vim/vimrc", dest: "/Users/{{ansible_user_id}}/.vimrc" }
-    - { path: "vim/vim", dest: "/Users/{{ansible_user_id}}/.vim" }
-    - { path: "zsh/zshrc", dest: "/Users/{{ansible_user_id}}/.zshrc" }
+    - { path: "tmux.conf", dest: ".tmux.conf" }
+    - { path: "git/gitconfig", dest: ".gitconfig" }
+    - { path: "ruby/gemrc", dest: ".gemrc" }
+    - { path: "vim/vimrc", dest: ".vimrc" }
+    - { path: "vim/vim", dest: ".vim" }
+    - { path: "zsh/zshrc", dest: ".zshrc" }
 
 - name: "Install font"
   file: src="/Users/{{ansible_user_id}}/.dotfiles/files/Droid Sans Mono for Powerline.otf" dest="/Users/{{ansible_user_id}}/Library/Fonts/Droid Sans Mono for Powerline.otf" state=link
+
+- name: "add shell"
+  lineinfile: dest=/etc/shells line='/usr/local/bin/zsh'
+  sudo: true
+
+- name: "change shell"
+  command: chsh -s /usr/local/bin/zsh {{ansible_user_id}}
+  sudo: true
