@@ -1,0 +1,18 @@
+---
+# dotfiles playbook
+
+- name: "Clone dotfiles"
+  git: repo=https://github.com/sthulb/dotfiles.git dest=/Users/{{ansible_user_id}} recursive=yes
+
+- name: "Link files"
+  file: src=/Users/{{ansible_user_id}}/.dotfiles/{{ item.path }} dest=/Users/{{ansible_user_id}}/{{ item.dest }} state=link
+  with_items:
+    - { path: "tmux.conf", dest:"/Users/{{ansible_user_id}}/.tmux.conf" }
+    - { path: "git/gitconfig", dest:"/Users/{{ansible_user_id}}/.gitconfig" }
+    - { path: "ruby/gemrc", dest:"/Users/{{ansible_user_id}}/.gemrc" }
+    - { path: "vim/vimrc", dest:"/Users/{{ansible_user_id}}/.vimrc" }
+    - { path: "vim/vim", dest:"/Users/{{ansible_user_id}}/.vim" }
+    - { path: "zsh/zshrc", dest:"/Users/{{ansible_user_id}}/.zshrc" }
+
+- name: "Install font"
+  file: src="/Users/{{ansible_user_id}}/.dotfiles/files/Droid Sans Mono for Powerline.otf" dest="/Users/{{ansible_user_id}}/Library/Fonts/Droid Sans Mono for Powerline.otf" state=link
