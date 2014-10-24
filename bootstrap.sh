@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PROVISION_DIR="/tmp/provision"
+
 fancy_echo() {
   echo $1
 }
@@ -39,12 +41,16 @@ ansible_deps() {
     sudo pip -q install virtualenv
   fi
 
-  mkdir -p /tmp/provision
-  virtualenv /tmp/provision
+  mkdir -p $PROVISION_DIR
+  virtualenv $PROVISION_DIR
 
   /tmp/provision/bin/pip -q install ansible
 
-  rm -rf /tmp/provision
+  rm -rf $PROVISION_DIR
+}
+
+clone_repo() {
+  git clone https://github.com/sthulb/laptop.git $PROVISION_DIR/repo
 }
 
 main() {
