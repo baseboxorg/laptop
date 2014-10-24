@@ -14,5 +14,5 @@
 - name: "Install Casks"
   homebrew_cask: name={{item}} state=installed
   environment:
-    HOMEBREW_CASK_OPTS: "--force --appdir=/Applications"
+    HOMEBREW_CASK_OPTS: "--appdir=/Applications"
   with_items: casks.packages
