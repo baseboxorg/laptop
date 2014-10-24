@@ -12,6 +12,11 @@ warn() {
   fancy_echo " WARN | $1"
 }
 
+function pause(){
+  printf "\n%b\n" "$*"
+  read -p ""
+}
+
 xcode_cli_tools() {
   xcode_status=$(xcode-select --print 2> /dev/null)
 
@@ -23,10 +28,28 @@ xcode_cli_tools() {
   fi
 
   xcode-select --install 2> /dev/null
+  pause "Press return once the command line tools are installed."
+}
+
+ansible_deps() {
+  info "Installing python dependencies"
+
+  if [ ! -x /usr/local/bin/pip ]; then
+    sudo easy_install -q pip
+    sudo pip -q install virtualenv
+  fi
+
+  mkdir -p /tmp/provision
+  virtualenv /tmp/provision
+
+  /tmp/provision/bin/pip -q install ansible
+
+  rm -rf /tmp/provision
 }
 
 main() {
   xcode_cli_tools
+  ansible_deps
 }
 
 if [ $# -eq 0 ]; then
