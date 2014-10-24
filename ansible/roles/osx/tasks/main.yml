@@ -1,0 +1,13 @@
+---
+# osx playbook
+
+- name: "OS X Preferences"
+  command: defaults write {{item.domain}} {{item.key}} {{item.value}}
+  with_items: osx.prefs.global
+
+- name: "Killing affected apps"
+  command: killall {{item}}
+  with_items:
+    - "Dock"
+    - "Finder"
+    - "SystemUIServer"
