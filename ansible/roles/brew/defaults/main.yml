@@ -10,6 +10,7 @@ brew:
     - package: "chruby"
     - package: "ctags"
     - package: "curl"
+    - package: "direnv"
     - package: "docker"
     - package: "go"
     - package: "libtool"
